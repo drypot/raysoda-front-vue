@@ -7,8 +7,10 @@ const count = ref(0)
 </script>
 
 <template>
-  <h1>{{ msg }}</h1>
-  <button type="button" @click="count++">count is: {{ count }}</button>
+  <h1 class="text-4xl">{{ msg }}</h1>
+  <div class="mt-4">
+    <button type="button" @click="count++">count is: {{ count }}</button>
+  </div>
 </template>
 
 <style scoped>
