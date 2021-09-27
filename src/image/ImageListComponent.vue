@@ -6,17 +6,10 @@ import { UrlMaker } from '../lib/base/url2'
 import { ref, watch } from 'vue'
 import { useRoute } from 'vue-router'
 
+const route = useRoute()
 const list = ref<ImageListItem[]>([])
 const prevUrl = ref('')
 const nextUrl = ref('')
-
-const route = useRoute()
-
-watch(() => route.fullPath, () => {
-  fetchData()
-})
-
-fetchData()
 
 function fetchData() {
   const page = limitNumber2(route.query.p, 1, 1, NaN)
@@ -33,6 +26,13 @@ function fetchData() {
       window.scrollTo(0,0)
     })
 }
+
+watch(() => route.fullPath, () => {
+  fetchData()
+})
+
+fetchData()
+
 </script>
 
 <template>
