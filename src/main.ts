@@ -16,14 +16,15 @@ import NotFound from './error/NotFound.vue'
 const router = createRouter({
   history: createWebHistory(),
   routes: [
-    { path: '/', component: ImageList},
-    { path: '/image-list', component: ImageList},
-    { path: '/image/:id', component: ImageDetail},
-    { path: '/about', component: About },
-    { path: '/ad', component: Ad },
-    { path: '/company', component: Company },
-    { path: '/privacy', component: Privacy },
-    { path: '/help', component: Help },
+    { path: '/', name:'home', component: ImageList},
+    { path: '/image-list', name:'image-list', component: ImageList},
+    { path: '/image/:id', name:'image', component: ImageDetail},
+    { path: '/about', name:'about', component: About },
+    { path: '/ad', name:'ad', component: Ad },
+    { path: '/company', name:'company', component: Company },
+    { path: '/privacy', name:'privacy', component: Privacy },
+    { path: '/help', name:'help', component: Help },
+    { path: '/user/:home', name:'user-home', component: Help },
     { path: '/:pathMatch(.*)*', name: 'not-found', component: NotFound },
   ]
 })
