@@ -1,6 +1,14 @@
+
 <script setup lang="ts">
-import HelloWorld from './component/HelloWorld.vue'</script>
+import { pageTitle } from './entity/config'
+import { useHead } from '@vueuse/head'
+
+useHead({
+  title: pageTitle()
+})
+</script>
 
 <template>
-  <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
+  <router-view></router-view>
 </template>
+
