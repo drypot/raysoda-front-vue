@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { useConfig } from '../_client/global'
+
+const config = useConfig()
+</script>
+
 <template>
   <div class="column border-b link-no-deco">
     <h3 class="my-4 leading-none">
@@ -5,14 +11,3 @@
     </h3>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
-import { config } from '../entity/config'
-
-export default defineComponent({
-  setup() {
-    return { config }
-  }
-})
-</script>

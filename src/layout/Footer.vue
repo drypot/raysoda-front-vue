@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import { useConfig } from '../_client/global'
+
+const config = useConfig()
+</script>
+
 <template>
   <div class="mt-ultra mb-12 border-t column link-no-deco">
     <div class="my-3 flex justify-center space-x-3">
@@ -17,14 +23,3 @@
     </h3>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue'
-import { config } from '../entity/config'
-
-export default defineComponent({
-  setup() {
-    return { config }
-  }
-})
-</script>

@@ -2,7 +2,7 @@
 import Header from '../layout/Header.vue'
 import Footer from '../layout/Footer.vue'
 import { useHead } from '@vueuse/head'
-import { pageTitle } from '../entity/config'
+import { pageTitle } from '../_client/title'
 
 useHead({
   title: pageTitle('Privacy')

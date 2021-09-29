@@ -21,7 +21,7 @@
   }
 
   .mt-small {
-    @apply mt-6
+    @apply mt-4
   }
 
   .mt-image-thumb {

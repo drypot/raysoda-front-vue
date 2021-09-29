@@ -1,7 +1,7 @@
 
 <script setup lang="ts">
-import { pageTitle } from './entity/config'
 import { useHead } from '@vueuse/head'
+import { pageTitle } from './_client/title'
 
 useHead({
   title: pageTitle()

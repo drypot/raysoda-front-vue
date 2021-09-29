@@ -1,21 +1,21 @@
 <script setup lang="ts">
-
-import { limitNumber2 } from '../lib/base/primitive'
-import { ImageListItem } from '../entity/image'
-import { UrlMaker } from '../lib/base/url2'
-import { ref, watch } from 'vue'
+import { limitNumber2 } from '../_util/primitive'
+import { UrlMaker } from '../_util/url2'
+import { ref } from 'vue'
 import { useRoute } from 'vue-router'
+import { ImageListItem } from '../_type/image-view'
+import { fetchData } from '../_client/fetch'
 
 const route = useRoute()
 const list = ref<ImageListItem[]>([])
 const prevUrl = ref('')
 const nextUrl = ref('')
 
-function fetchData() {
+fetchData(() => {
   const page = limitNumber2(route.query.p, 1, 1, NaN)
   const pageSize = limitNumber2(route.query.ps, 16, 1, 128)
   const date = route.query.d
-  fetch(`/api/image?p=${page}&ps=${pageSize}&d=${date ?? ''}`)
+  fetch(`/api/image-list?p=${page}&ps=${pageSize}&d=${date ?? ''}`)
     .then(r => r.json())
     .then(body => {
       list.value = body.list
@@ -23,16 +23,12 @@ function fetchData() {
         .add('d', date).add('p', page - 1, 1).add('ps', pageSize, 16).gen() : ''
       nextUrl.value = list.value.length === pageSize ? UrlMaker.from('/image-list')
         .add('d', date).add('p', page + 1).add('ps', pageSize, 16).gen() : ''
+      // 리스트 페이지들 간에 이동할 때는 스크롤을 리셋해주어야 한다.
+      // 한데 이보다 더 중요한 것은 Detail 페이지에서 Back 버튼으로 돌아올 때 스크롤 위치를 보존하는 것이다.
+      // 이건 잘 안 되는 것 같다. (또는 먼가 복잡해 보인다)
       window.scrollTo(0,0)
     })
-}
-
-watch(() => route.fullPath, () => {
-  fetchData()
 })
-
-fetchData()
-
 </script>
 
 <template>
